@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Sell Product</h1>
+            <a href="/merchant/dashboard" class="btn">← Back to Dashboard</a>
+        </div>
+
+        <h2>Make a Sale</h2>
+        <form method="POST" action="/merchant/sell_product">
+            <select name="product_id" required>
+                <option value="">Select Product</option>
+                {% for product in products %}
+                <option value="{{ product[0] }}">
+                    {{ product[1] }} (Stock: {{ product[2] }}, Price: ₹{{ product[3] }})
+                </option>
+                {% endfor %}
+            </select>
+            <input type="number" name="quantity" placeholder="Quantity" required>
+            <input type="text" name="customer_name" placeholder="Customer Name (Optional)">
+            <button type="submit" class="btn">Sell</button>
+        </form>
+
+        <h2>Available Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Available Stock</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product[0] }}</td>
+                    <td>{{ product[1] }}</td>
+                    <td>{{ product[2] }}</td>
+                    <td>₹{{ product[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

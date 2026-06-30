@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Inventory System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="landing-page">
+        <h1>🏪 Smart Inventory & Sales System</h1>
+        <p>Manage inventory, track sales, and analyze data all in one place</p>
+
+        <div class="role-cards">
+            <div class="role-card">
+                <h2>👨‍💼 Admin</h2>
+                <p>Manage users, view all inventory, and analyze business performance</p>
+                <a href="/login" class="btn">Login as Admin</a>
+            </div>
+
+            <div class="role-card">
+                <h2>🏬 Merchant</h2>
+                <p>Manage your products, track sales, and grow your business</p>
+                <a href="/login" class="btn">Login as Merchant</a>
+            </div>
+
+            <div class="role-card">
+                <h2>🛒 Customer</h2>
+                <p>Browse products, place orders, and track your purchases</p>
+                <a href="/login" class="btn">Login as Customer</a>
+            </div>
+        </div>
+
+        <p style="margin-top: 30px;">Don't have an account? <a href="/register" style="color: #667eea;">Register here</a></p>
+    </div>
+</body>
+</html>

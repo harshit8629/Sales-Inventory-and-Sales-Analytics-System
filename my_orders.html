@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📦 My Orders</h1>
+            <a href="/customer/dashboard" class="btn">← Back to Dashboard</a>
+        </div>
+
+        {% if orders %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order[0] }}</td>
+                    <td>{{ order[3] }}</td>
+                    <td>{{ order[4] }}</td>
+                    <td>₹{{ order[5] }}</td>
+                    <td><span class="status-badge">{{ order[6] }}</span></td>
+                    <td>{{ order[7] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-data">You haven't placed any orders yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

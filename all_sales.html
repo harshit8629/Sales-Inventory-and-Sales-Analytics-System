@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Sales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 All Sales Records</h1>
+            <a href="/admin/dashboard" class="btn">← Back to Dashboard</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sale ID</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Merchant</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in sales %}
+                <tr>
+                    <td>{{ sale[0] }}</td>
+                    <td>{{ sale[2] }}</td>
+                    <td>{{ sale[3] }}</td>
+                    <td>₹{{ sale[4] }}</td>
+                    <td>₹{{ sale[5] }}</td>
+                    <td>{{ sale[9] if sale[9] else 'N/A' }}</td>
+                    <td>{{ sale[10] if sale[10] else 'Walk-in' }}</td>
+                    <td>{{ sale[8] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

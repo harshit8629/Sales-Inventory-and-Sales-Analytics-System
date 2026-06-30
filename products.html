@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛍️ Available Products</h1>
+            <div>
+                <a href="/customer/cart" class="btn">🛒 View Cart</a>
+                <a href="/customer/dashboard" class="btn">← Dashboard</a>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <h3>{{ product[1] }}</h3>
+                <p class="price">₹{{ product[3] }}</p>
+                <p class="stock">Stock: {{ product[2] }}</p>
+                <p class="merchant">Sold by: {{ product[5] }}</p>
+                
+                <form method="POST" action="/customer/add_to_cart">
+                    <input type="hidden" name="product_id" value="{{ product[0] }}">
+                    <input type="number" name="quantity" value="1" min="1" max="{{ product[2] }}" required>
+                    <button type="submit" class="btn">Add to Cart</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

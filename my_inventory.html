@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Inventory</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📦 My Inventory</h1>
+            <a href="/merchant/dashboard" class="btn">← Back to Dashboard</a>
+        </div>
+
+        <h2>Add New Product</h2>
+        <form method="POST" action="/merchant/add_product">
+            <input type="text" name="product_id" placeholder="Product ID" required>
+            <input type="text" name="name" placeholder="Product Name" required>
+            <input type="number" name="quantity" placeholder="Quantity" required>
+            <input type="number" step="0.01" name="price" placeholder="Price" required>
+            <button type="submit" class="btn">Add Product</button>
+        </form>
+
+        <h2>Update Product Price</h2>
+        <form method="POST" action="/merchant/update_product">
+            <input type="text" name="product_id" placeholder="Product ID" required>
+            <input type="number" step="0.01" name="price" placeholder="New Price" required>
+            <button type="submit" class="btn">Update Price</button>
+        </form>
+
+        <h2>Restock Product</h2>
+        <form method="POST" action="/merchant/restock">
+            <input type="text" name="product_id" placeholder="Product ID" required>
+            <input type="number" name="quantity" placeholder="Quantity to Add" required>
+            <button type="submit" class="btn">Restock</button>
+        </form>
+
+        <h2>My Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product[0] }}</td>
+                    <td>{{ product[1] }}</td>
+                    <td>{{ product[2] }}</td>
+                    <td>₹{{ product[3] }}</td>
+                    <td>
+                        <a href="/merchant/delete_product/{{ product[0] }}" 
+                           class="btn-delete" 
+                           onclick="return confirm('Delete this product?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

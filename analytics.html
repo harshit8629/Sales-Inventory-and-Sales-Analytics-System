@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Sales Analytics Dashboard</h1>
+            <a href="/admin/dashboard" class="btn">← Back to Dashboard</a>
+        </div>
+
+        {% if no_data %}
+        <p class="no-data">No sales data available yet.</p>
+        {% else %}
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Revenue</h3>
+                <p>₹{{ total_revenue }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Products Sold</h3>
+                <p>{{ total_products_sold }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Best Selling Product</h3>
+                <p>{{ best_product }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Average Sale Value</h3>
+                <p>₹{{ average_sale | round(2) }}</p>
+            </div>
+        </div>
+
+        <h2>Daily Revenue Trend</h2>
+        <img src="{{ url_for('static', filename='admin_daily_sales.png') }}" width="800">
+
+        <h2>Top Products Sold</h2>
+        <img src="{{ url_for('static', filename='admin_product_sales.png') }}" width="800">
+
+        {% endif %}
+    </div>
+</body>
+</html>
