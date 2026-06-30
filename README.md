@@ -141,7 +141,7 @@ inventory_project/
 
 ### 1️⃣ Clone Repository
 
-git clone https://github.com/your-username/inventory-system.git  
+git clone https://github.com/harshit8629/Sales-Inventory-and-Sales-Analytics-System
 cd inventory-system  
 
 ### 2️⃣ Install Dependencies
